@@ -1,0 +1,1781 @@
+[
+    {
+        "id": "3c2d2243.65acae",
+        "type": "subflow",
+        "name": "Read AEG Invt",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 340,
+                "wires": [
+                    {
+                        "id": "c2627d4b.27cfb"
+                    },
+                    {
+                        "id": "7043f7e3.0e11f8"
+                    },
+                    {
+                        "id": "7245bf97.6e8bf"
+                    },
+                    {
+                        "id": "e860c20.b7bc44"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1360,
+                "y": 360,
+                "wires": [
+                    {
+                        "id": "9fad8cb.e9c367",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 420,
+                "y": 300,
+                "wires": [
+                    {
+                        "id": "c2627d4b.27cfb",
+                        "port": 1
+                    }
+                ]
+            },
+            {
+                "x": 420,
+                "y": 460,
+                "wires": [
+                    {
+                        "id": "7043f7e3.0e11f8",
+                        "port": 1
+                    }
+                ]
+            },
+            {
+                "x": 420,
+                "y": 840,
+                "wires": [
+                    {
+                        "id": "7245bf97.6e8bf",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "outputLabels": [
+            "power_input, power_output, temperature, generated_today, tension_input, tension_output",
+            "7590(16) modbus response Buffer, data Array (PDU), input message",
+            "5704(20) modbus response Buffer, data Array (PDU), input message",
+            "5776(14) modbus response Buffer, data Array (PDU), input message"
+        ]
+    },
+    {
+        "id": "58cdc4f7.5dc36c",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set power_output",
+        "rules": [
+            {
+                "t": "set",
+                "p": "power_output",
+                "pt": "msg",
+                "to": "payload[7]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "power_output",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "c2627d4b.27cfb",
+        "type": "modbus-getter",
+        "z": "3c2d2243.65acae",
+        "name": "Get 5790(16)",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "logIOActivities": false,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "5790",
+        "quantity": "16",
+        "server": "51a61a.c96579e8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "58cdc4f7.5dc36c",
+                "1230bc03.6b6304",
+                "e0fa97d6.d00818"
+            ],
+            [
+                "488f0e6b.a50cb"
+            ]
+        ]
+    },
+    {
+        "id": "34e16f58.dbcf8",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set generated_today",
+        "rules": [
+            {
+                "t": "set",
+                "p": "generated_today",
+                "pt": "msg",
+                "to": "payload[1]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "generated_today",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 360,
+        "wires": [
+            [
+                "3ed4bfb6.0ea7a"
+            ]
+        ]
+    },
+    {
+        "id": "7043f7e3.0e11f8",
+        "type": "modbus-getter",
+        "z": "3c2d2243.65acae",
+        "name": "Get 5704(20)",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "logIOActivities": false,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "5704",
+        "quantity": "20",
+        "server": "51a61a.c96579e8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "34e16f58.dbcf8"
+            ],
+            [
+                "13ce24b1.be99db"
+            ]
+        ]
+    },
+    {
+        "id": "1230bc03.6b6304",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set power_input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "power_input",
+                "pt": "msg",
+                "to": "payload[5]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "power_input",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "7245bf97.6e8bf",
+        "type": "modbus-getter",
+        "z": "3c2d2243.65acae",
+        "name": "Get 5776(14)",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "logIOActivities": false,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "5776",
+        "quantity": "14",
+        "server": "51a61a.c96579e8",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "x": 310,
+        "y": 520,
+        "wires": [
+            [
+                "7ac93fd4.c4204",
+                "8cf8aec7.bf162",
+                "dc4d1ea5.f4b96",
+                "4bf4d93f.cc6678"
+            ],
+            [
+                "b1198e1e.077c2"
+            ]
+        ]
+    },
+    {
+        "id": "7ac93fd4.c4204",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set tension_input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tension_input",
+                "pt": "msg",
+                "to": "payload[0]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "tension_input",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 520,
+        "wires": [
+            [
+                "fec56692.a97588"
+            ]
+        ]
+    },
+    {
+        "id": "3ed4bfb6.0ea7a",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to watthour",
+        "func": "msg.generated_today = Number(msg.generated_today);\nmsg.generated_today = (msg.generated_today)/100;\nmsg.generated_today = (msg.generated_today)*1000;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "fec56692.a97588",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to volt",
+        "func": "msg.tension_input = Number(msg.tension_input);\nmsg.tension_input = (msg.tension_input)/10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 520,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "b1198e1e.077c2",
+        "type": "modbus-response",
+        "z": "3c2d2243.65acae",
+        "name": "get 5776(14) result",
+        "registerShowMax": "14",
+        "x": 550,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "13ce24b1.be99db",
+        "type": "modbus-response",
+        "z": "3c2d2243.65acae",
+        "name": "get 5704(20) result",
+        "registerShowMax": "20",
+        "x": 550,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "488f0e6b.a50cb",
+        "type": "modbus-response",
+        "z": "3c2d2243.65acae",
+        "name": "get 5790(16) result",
+        "registerShowMax": "16",
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e0fa97d6.d00818",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "msg",
+                "to": "payload[8]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "temperature",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 220,
+        "wires": [
+            [
+                "938ba00d.6d19c"
+            ]
+        ]
+    },
+    {
+        "id": "938ba00d.6d19c",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to celcius",
+        "func": "msg.temperature = Number(msg.temperature);\nmsg.temperature = (msg.temperature)/100;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 220,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "9fad8cb.e9c367",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "Wait for all tasks to finish",
+        "func": "context.data = context.data || new Object();\n//context.data.topic = \"data\";\n\nswitch (msg.topic) {\n    case \"tension_input\":\n        context.data.tension_input = msg.tension_input;\n        msg = null;\n        break;\n    case \"current_input\":\n        context.data.current_input = msg.current_input;\n        msg = null;\n        break;\n    case \"current_output\":\n        context.data.current_output = msg.current_output;\n        msg = null;\n        break;   \n    case \"tension_output\":\n        context.data.tension_output = msg.tension_output;\n        msg = null;\n        break;\n    case \"generated_today\":\n        context.data.generated_today = msg.generated_today;\n        msg = null;\n        break;\n    case \"power_input\":\n        context.data.power_input = msg.power_input;\n        msg = null;\n        break;\n    case \"power_output\":\n        context.data.power_output = msg.power_output;\n        msg = null;\n        break;\n    case \"temperature\":\n        context.data.temperature = msg.temperature;\n        msg = null;\n        break;   \n    case \"context\":\n        context.data.topic = msg.original_topic;\n        msg=null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n\n}\n\nif(context.data.current_input !=null && context.data.current_output !=null && context.data.tension_output !=null && context.data.temperature != null && context.data.tension_input != null && context.data.generated_today != null && context.data.power_input != null && context.data.power_output != null && context.data.topic != null) {\n\tmsg2 = new Object();\n    msg2 = context.data;\n    context.data=null;\n\treturn msg2;\n} else return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1130,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69fad5e4.33175c",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set tension_input 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tension_input",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "tension_input",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 1040,
+        "wires": [
+            [
+                "816246e7.4921c8",
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "33791222.9ad4fe",
+        "type": "catch",
+        "z": "3c2d2243.65acae",
+        "name": "catch get 5776 modbus",
+        "scope": [
+            "c2627d4b.27cfb"
+        ],
+        "x": 200,
+        "y": 1040,
+        "wires": [
+            [
+                "69fad5e4.33175c"
+            ]
+        ]
+    },
+    {
+        "id": "3f13090c.69c276",
+        "type": "catch",
+        "z": "3c2d2243.65acae",
+        "name": "catch get 5704 modbus",
+        "scope": [
+            "7043f7e3.0e11f8"
+        ],
+        "x": 200,
+        "y": 980,
+        "wires": [
+            [
+                "b97ea1a3.26b66"
+            ]
+        ]
+    },
+    {
+        "id": "b97ea1a3.26b66",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set generated_today 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "generated_today",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "generated_today",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 980,
+        "wires": [
+            [
+                "9fad8cb.e9c367",
+                "816246e7.4921c8"
+            ]
+        ]
+    },
+    {
+        "id": "a67c9e9.585b26",
+        "type": "catch",
+        "z": "3c2d2243.65acae",
+        "name": "catch get 5790 modbus",
+        "scope": [
+            "c2627d4b.27cfb"
+        ],
+        "x": 200,
+        "y": 920,
+        "wires": [
+            [
+                "902a59e8.6a7018",
+                "fae4bd62.77df9"
+            ]
+        ]
+    },
+    {
+        "id": "fae4bd62.77df9",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set power_input 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "power_input",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "power_input",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 920,
+        "wires": [
+            [
+                "9fad8cb.e9c367",
+                "816246e7.4921c8"
+            ]
+        ]
+    },
+    {
+        "id": "816246e7.4921c8",
+        "type": "debug",
+        "z": "3c2d2243.65acae",
+        "name": "SET_NULL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 810,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "902a59e8.6a7018",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set power_output 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "power_output",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "power_output",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e860c20.b7bc44",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set power_output",
+        "rules": [
+            {
+                "t": "set",
+                "p": "original_topic",
+                "pt": "msg",
+                "to": "topic",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "context",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 60,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "8cf8aec7.bf162",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set tension_input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tension_output",
+                "pt": "msg",
+                "to": "payload[8]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "tension_output",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 480,
+        "wires": [
+            [
+                "df529b9f.825848"
+            ]
+        ]
+    },
+    {
+        "id": "df529b9f.825848",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to volt",
+        "func": "msg.tension_output = Number(msg.tension_output);\nmsg.tension_output = (msg.tension_output)/10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 480,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "dc4d1ea5.f4b96",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set current_input",
+        "rules": [
+            {
+                "t": "set",
+                "p": "current_input",
+                "pt": "msg",
+                "to": "payload[1]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "current_input",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "8e216434.e510e8"
+            ]
+        ]
+    },
+    {
+        "id": "4bf4d93f.cc6678",
+        "type": "change",
+        "z": "3c2d2243.65acae",
+        "name": "set current_output",
+        "rules": [
+            {
+                "t": "set",
+                "p": "current_output",
+                "pt": "msg",
+                "to": "payload[9]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "current_output",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "6f4578ab.5cc7f8"
+            ]
+        ]
+    },
+    {
+        "id": "6f4578ab.5cc7f8",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to ampere",
+        "func": "msg.current_output = Number(msg.current_output);\nmsg.current_output = (msg.current_output)/10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 620,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "8e216434.e510e8",
+        "type": "function",
+        "z": "3c2d2243.65acae",
+        "name": "convert to ampere",
+        "func": "msg.current_input = Number(msg.current_input);\nmsg.current_input = (msg.current_input)/10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 580,
+        "wires": [
+            [
+                "9fad8cb.e9c367"
+            ]
+        ]
+    },
+    {
+        "id": "51a61a.c96579e8",
+        "type": "modbus-client",
+        "z": "",
+        "name": "invter",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": true,
+        "tcpHost": "192.168.1.128",
+        "tcpPort": "8011",
+        "tcpType": "TELNET",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "100",
+        "clientTimeout": "1000",
+        "reconnectTimeout": "10000"
+    },
+    {
+        "id": "faad3ca8.dc817",
+        "type": "tab",
+        "label": "Monitor AEG invt",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1d5cc9d3.b93e96",
+        "type": "debug",
+        "z": "faad3ca8.dc817",
+        "name": "debug pvoutput AEG",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1280,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4aa3af25.e15c8",
+        "type": "inject",
+        "z": "faad3ca8.dc817",
+        "name": "Every 5 Minutes",
+        "topic": "data",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "ca393010.be2e6"
+            ]
+        ]
+    },
+    {
+        "id": "6b7ab678.b52df8",
+        "type": "catch",
+        "z": "faad3ca8.dc817",
+        "name": "catch all",
+        "scope": null,
+        "x": 100,
+        "y": 500,
+        "wires": [
+            [
+                "9923172f.b6a8a8"
+            ]
+        ]
+    },
+    {
+        "id": "9923172f.b6a8a8",
+        "type": "debug",
+        "z": "faad3ca8.dc817",
+        "name": "debug catchall",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 760,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "51ef74fe.aa095c",
+        "type": "http request",
+        "z": "faad3ca8.dc817",
+        "name": "Addstatus pvoutput",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://pvoutput.org/service/r2/addstatus.jsp?d={{{date}}}&t={{{time}}}&v1={{{generated_today}}}&v2={{{power_output}}}&v5={{{temperature}}}&v6={{{tension_input}}}",
+        "tls": "",
+        "x": 1270,
+        "y": 260,
+        "wires": [
+            [
+                "1d5cc9d3.b93e96"
+            ]
+        ]
+    },
+    {
+        "id": "a6e6b195.4a3ff",
+        "type": "function",
+        "z": "faad3ca8.dc817",
+        "name": "set payload and headers",
+        "func": "msg.headers = {};\nmsg.headers['X-Pvoutput-Apikey'] = 'pvoutput-key';\nmsg.headers['X-Pvoutput-SystemId'] = 'pvoutput-systemid';\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1050,
+        "y": 260,
+        "wires": [
+            [
+                "51ef74fe.aa095c"
+            ]
+        ]
+    },
+    {
+        "id": "79456d4.91f3494",
+        "type": "inject",
+        "z": "faad3ca8.dc817",
+        "name": "",
+        "topic": "timer",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "9d4896cf.160f78",
+                "1403a6cf.7e5499",
+                "fc329029.c0ef8"
+            ]
+        ]
+    },
+    {
+        "id": "9d4896cf.160f78",
+        "type": "moment",
+        "z": "faad3ca8.dc817",
+        "name": "set date",
+        "topic": "OBJECT OUTPUT",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/London",
+        "adjAmount": "0",
+        "adjType": "months",
+        "adjDir": "add",
+        "format": "YYYYMMDD",
+        "locale": "nl_NL",
+        "output": "current_date",
+        "outputType": "global",
+        "outTz": "Europe/Amsterdam",
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "e71cf40c.7afa88"
+            ]
+        ]
+    },
+    {
+        "id": "d06e2604.124fc8",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set datetime",
+        "rules": [
+            {
+                "t": "set",
+                "p": "date",
+                "pt": "msg",
+                "to": "current_date",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "time",
+                "pt": "msg",
+                "to": "current_time",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 260,
+        "wires": [
+            [
+                "a6e6b195.4a3ff"
+            ]
+        ]
+    },
+    {
+        "id": "940a5a3a.2c5cc8",
+        "type": "modbus-response",
+        "z": "faad3ca8.dc817",
+        "name": "get 5776(14) result",
+        "registerShowMax": "14",
+        "x": 650,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "97527385.08e32",
+        "type": "modbus-response",
+        "z": "faad3ca8.dc817",
+        "name": "get 5704(20) result",
+        "registerShowMax": "20",
+        "x": 650,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f579b4e6.43fd58",
+        "type": "modbus-response",
+        "z": "faad3ca8.dc817",
+        "name": "get 5790(16) result",
+        "registerShowMax": "16",
+        "x": 650,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "a6d6ffba.56106",
+        "type": "comment",
+        "z": "faad3ca8.dc817",
+        "name": "https://pvoutput.org/service/r2/addstatus.jsp?d={{{date}}}&t={{{time}}}&v1={{{generated_today}}}&v2={{{power_output}}}&v5={{{temperature}}}&v6={{{tension_input}}}",
+        "info": "https://pvoutput.org/service/r2/addstatus.jsp?d={{{date}}}&t={{{time}}}&v1={{{generated_today}}}&v2={{{power_output}}}&v5={{{temperature}}}&v6={{{tension_input}}}",
+        "x": 740,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ca393010.be2e6",
+        "type": "time-range-switch",
+        "z": "faad3ca8.dc817",
+        "name": "sunset filter",
+        "lat": "51.5438497",
+        "lon": "3.6242172",
+        "startTime": "sunrise",
+        "endTime": "sunset",
+        "startOffset": "-30",
+        "endOffset": "+30",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "c1723d38.fb716"
+            ],
+            [
+                "35fa0ac8.87d7e6"
+            ]
+        ]
+    },
+    {
+        "id": "35fa0ac8.87d7e6",
+        "type": "debug",
+        "z": "faad3ca8.dc817",
+        "name": "no sun",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 350,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1403a6cf.7e5499",
+        "type": "function",
+        "z": "faad3ca8.dc817",
+        "name": "filter msg per 5 mins",
+        "func": "context.data = context.data || new Object();\nif(context.last_sent == null){\n    context.last_sent = new Date(\"1-1-1900\")\n}\n//if(context.last_reported == null){\n  //  context.last_reported = new Date(\"1-1-1900\")\n//}\nvar now = new Date();\n\nswitch (msg.topic) {\n    case \"timer\":\n        var diffMs = (now - context.last_sent); // milliseconds between now & Christmas\n        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes\n        break;\n    case \"data\":\n        //context.last_reported = now;\n        context.data.power_input = msg.power_input;\n        context.data.power_output = msg.power_output;\n        context.data.temperature = msg.temperature;\n        context.data.tension_input = msg.tension_input;\n        break;\n    default:\n    \tbreak;\n\n}\n\nif(diffMins > 1 && context.data.power_output)\n{\n\tmsg = new Object();\n    msg = context.data;\n    context.last_sent=now;\n    context.data=null;\n\treturn msg;\n} else return null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 260,
+        "wires": [
+            [
+                "d06e2604.124fc8"
+            ]
+        ]
+    },
+    {
+        "id": "882df367.9793a",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "power output",
+        "group": "c660c357.88255",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "Power output",
+        "label": "Watts",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "3000",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "1000",
+        "seg2": "2000",
+        "x": 770,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "868f7b67.425c58",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set power output to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "power_output",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 640,
+        "wires": [
+            [
+                "882df367.9793a",
+                "d41dd530.6810f8"
+            ]
+        ]
+    },
+    {
+        "id": "d41dd530.6810f8",
+        "type": "ui_chart",
+        "z": "faad3ca8.dc817",
+        "name": "",
+        "group": "78ad45fe.cbc3cc",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "label": "Power output",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "3000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c1723d38.fb716",
+        "type": "subflow:3c2d2243.65acae",
+        "z": "faad3ca8.dc817",
+        "name": "",
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "1403a6cf.7e5499",
+                "868f7b67.425c58",
+                "9f1a4a62.27b378",
+                "7e29d244.78e67c",
+                "b5dfedaa.bb6e1",
+                "637c152f.a559dc",
+                "d09a6547.63aa58",
+                "70a5066e.7fb0a8",
+                "e1c4f97e.477c58",
+                "890de708.245b88"
+            ],
+            [
+                "f579b4e6.43fd58"
+            ],
+            [
+                "97527385.08e32"
+            ],
+            [
+                "940a5a3a.2c5cc8"
+            ]
+        ]
+    },
+    {
+        "id": "9f1a4a62.27b378",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set temp to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 1000,
+        "wires": [
+            [
+                "e9531efa.1456e"
+            ]
+        ]
+    },
+    {
+        "id": "e9531efa.1456e",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "temperature",
+        "group": "8d5b9c26.2f368",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatuur omvormer",
+        "label": "Celcius",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "40",
+        "seg2": "50",
+        "x": 750,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "7e29d244.78e67c",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set tension_input to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "tension_input",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 740,
+        "wires": [
+            [
+                "9e385976.dbc208"
+            ]
+        ]
+    },
+    {
+        "id": "9e385976.dbc208",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "Tension input",
+        "group": "d7b102f6.4b841",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Spanning",
+        "label": "Volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "400",
+        "seg2": "450",
+        "x": 790,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "b5dfedaa.bb6e1",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set tension_input to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "tension_output",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 780,
+        "wires": [
+            [
+                "1701cb8f.478414",
+                "f56403b5.901ba"
+            ]
+        ]
+    },
+    {
+        "id": "1701cb8f.478414",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "Tension Out",
+        "group": "d7b102f6.4b841",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Spanning (net)",
+        "label": "Volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "250",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "230",
+        "seg2": "240",
+        "x": 790,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "637c152f.a559dc",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set power input to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "power_input",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 600,
+        "wires": [
+            [
+                "c13571b.f4c359"
+            ]
+        ]
+    },
+    {
+        "id": "c13571b.f4c359",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "power input",
+        "group": "c660c357.88255",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "Power input",
+        "label": "Watts",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "3200",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "500",
+        "seg2": "100-",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "d09a6547.63aa58",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set current_input to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "current_input",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 860,
+        "wires": [
+            [
+                "acd3e737.7ce038"
+            ]
+        ]
+    },
+    {
+        "id": "acd3e737.7ce038",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "Current input",
+        "group": "435ddef5.b84da",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Stroomsterke",
+        "label": "Ampere",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "5",
+        "seg2": "10",
+        "x": 790,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "70a5066e.7fb0a8",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set current_output to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "current_output",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 900,
+        "wires": [
+            [
+                "f3a1193d.784598"
+            ]
+        ]
+    },
+    {
+        "id": "f3a1193d.784598",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "Current output",
+        "group": "435ddef5.b84da",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Stroomsterke (net)",
+        "label": "Ampere",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "5",
+        "seg2": "10",
+        "x": 800,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "e1c4f97e.477c58",
+        "type": "function",
+        "z": "faad3ca8.dc817",
+        "name": "determine efff",
+        "func": "msg.payload = Math.round((Number(msg.power_output) * 100)/ Number(msg.power_input));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 960,
+        "wires": [
+            [
+                "91303dc5.fb53d"
+            ]
+        ]
+    },
+    {
+        "id": "91303dc5.fb53d",
+        "type": "ui_gauge",
+        "z": "faad3ca8.dc817",
+        "name": "Efficiency",
+        "group": "8d5b9c26.2f368",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Efficiency",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca5151",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "50",
+        "seg2": "75",
+        "x": 780,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "a8612139.82ffc",
+        "type": "ui_text",
+        "z": "faad3ca8.dc817",
+        "group": "78ad45fe.cbc3cc",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "generated_today",
+        "label": "Opgewekt vandaag (Wh)",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 830,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "890de708.245b88",
+        "type": "change",
+        "z": "faad3ca8.dc817",
+        "name": "set generated_today to payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "generated_today",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 1060,
+        "wires": [
+            [
+                "a8612139.82ffc"
+            ]
+        ]
+    },
+    {
+        "id": "f56403b5.901ba",
+        "type": "ui_chart",
+        "z": "faad3ca8.dc817",
+        "name": "",
+        "group": "78ad45fe.cbc3cc",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "label": "Voltage output",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "230",
+        "ymax": "260",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 800,
+        "y": 820,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e71cf40c.7afa88",
+        "type": "debug",
+        "z": "faad3ca8.dc817",
+        "name": "datetimedebug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 640,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fc329029.c0ef8",
+        "type": "moment",
+        "z": "faad3ca8.dc817",
+        "name": "set time",
+        "topic": "OBJECT OUTPUT",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/London",
+        "adjAmount": "0",
+        "adjType": "months",
+        "adjDir": "add",
+        "format": "HH:mm",
+        "locale": "nl_NL",
+        "output": "current_time",
+        "outputType": "global",
+        "outTz": "Europe/Amsterdam",
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "e71cf40c.7afa88"
+            ]
+        ]
+    },
+    {
+        "id": "c660c357.88255",
+        "type": "ui_group",
+        "z": "",
+        "name": "Power",
+        "tab": "1486c828.77f8b8",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "78ad45fe.cbc3cc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Opwek",
+        "tab": "1486c828.77f8b8",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "8d5b9c26.2f368",
+        "type": "ui_group",
+        "z": "",
+        "name": "Temperatuur , Effectiviteit",
+        "tab": "1486c828.77f8b8",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "d7b102f6.4b841",
+        "type": "ui_group",
+        "z": "",
+        "name": "Spanning",
+        "tab": "1486c828.77f8b8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "435ddef5.b84da",
+        "type": "ui_group",
+        "z": "",
+        "name": "Stroomsterkte",
+        "tab": "1486c828.77f8b8",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "1486c828.77f8b8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Omvormer",
+        "icon": "dashboard"
+    }
+]

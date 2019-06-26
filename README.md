@@ -7,3 +7,11 @@ Tested with AS-IR01 https://www.aeg-industrialsolar.de/product/inverters/singe-p
 
 Monitor AEG INVT is the main script that calls a subflow to do the modbus calls (Read AEG INVT)
 
+Needed modules:
+- node-red
+- node-red-contrib-modbus
+- node-red-contrib-moment
+- node-red-contrib-time-range-switch
+- node-red-dashboard
+
+

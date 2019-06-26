@@ -1,5 +1,5 @@
 # aeg-inverter-monitor
-Node-red Monitor tools for AEG AS-IR01 inverter. Sends info to public pvoutput site. Set API key and systemid in the flow (set payload headers). See pvoutput.org for an account. 
+Node-red Monitor tools for AEG AS-IR01 inverter. Sends info to public pvoutput site (https://pvoutput.org). Set API key and systemid in the flow (set payload headers). See pvoutput.org for an account. 
 
 https://nodered.org/
 

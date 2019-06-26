@@ -1,6 +1,8 @@
 # aeg-inverter-monitor
 Node-red Monitor tools for AEG AS-IR01 inverter. Sends info to public pvoutput site. Set API key and systemid in the flow (set payload headers). See pvoutput.org for an account. 
 
+https://nodered.org/
+
 # Node-Red script for monitoring a AEG inverter. 
 
 Tested with AS-IR01 https://www.aeg-industrialsolar.de/product/inverters/singe-phase-inverters/one-phase-inverter/

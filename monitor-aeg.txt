@@ -920,7 +920,7 @@
         "type": "function",
         "z": "faad3ca8.dc817",
         "name": "set payload and headers",
-        "func": "msg.headers = {};\nmsg.headers['X-Pvoutput-Apikey'] = 'pvoutput-key';\nmsg.headers['X-Pvoutput-SystemId'] = 'pvoutput-systemid';\n\nreturn msg;",
+        "func": "msg.headers = {};\nmsg.headers['X-Pvoutput-Apikey'] = '#pvoutput-key#';\nmsg.headers['X-Pvoutput-SystemId'] = '#pvoutput-systemid#';\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1050,
